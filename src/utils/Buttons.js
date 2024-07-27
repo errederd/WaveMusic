@@ -51,8 +51,8 @@ function getButtons() {
         .setEmoji({ name: '⏪' })
         .setStyle(ButtonStyle.Secondary)
         .setDisabled(false);
-    let row = new ActionRowBuilder().addComponents(lowvolumebut, previousbut, pausebut, skipbut, highvolumebut, stopbut);
-    let row2 = new ActionRowBuilder().addComponents(rewindbut, loopbut, stopbut, shufflebut, forwardbut, stopbut);
+    let row = new ActionRowBuilder().addComponents(lowvolumebut, previousbut, pausebut, skipbut, highvolumebut);
+    let row2 = new ActionRowBuilder().addComponents(rewindbut, loopbut, stopbut, shufflebut, forwardbut);
     return [row, row2];
 }
 
