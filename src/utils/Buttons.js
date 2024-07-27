@@ -52,7 +52,7 @@ function getButtons() {
         .setStyle(ButtonStyle.Secondary)
         .setDisabled(false);
     let row = new ActionRowBuilder().addComponents(lowvolumebut, previousbut, pausebut, skipbut, highvolumebut);
-    let row2 = new ActionRowBuilder().addComponents(rewindbut, loopbut, stopbut, shufflebut, forwardbut);
+    let row2 = new ActionRowBuilder().addComponents(rewindbut, loopbut, stopbut, shufflebut, forwardbut, HIGH_VOL_BUT);
     return [row, row2];
 }
 
