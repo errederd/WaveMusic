@@ -61,7 +61,7 @@ module.exports = class Help extends Command {
         .setColor(this.client.color.main)
         .setTitle("Help Menu")
         .setDescription(
-          `Hey there! I'm ${this.client.user.username}, a music bot made with [WaveMusic](https://github.com/appujet/WaveMusic) and Discord. You can use \`${prefix.prefix}help <command>\` to get more info on a command.`
+          `Hey there! I'm ${this.client.user.username}, a music bot. You can use \`/help <command>\` to get more info on a command.`
         )
         .setFooter({
           text: `Use ${prefix.prefix}help <command> for more info on a command`,
