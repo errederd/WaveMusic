@@ -33,7 +33,6 @@
         "@types/signale": "^1.4.7"
     },
     "dependencies": {
-        "@discordjs/voice": "^0.13.0",
         "better-sqlite3": "^9.4.3",
         "discord.js": "^14.14.1",
         "dotenv": "^16.4.5",
