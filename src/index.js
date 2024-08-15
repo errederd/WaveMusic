@@ -38,35 +38,37 @@ manager.on('shardCreate', shard => {
     shard.on('ready', async () => {
         logger.start(`[CLIENT] Shard ${shard.id} connected to Discord's Gateway.`);
 
-        // Aquí debes especificar el ID del canal de voz al que quieres unirte
-        const channelId = 'TU_CANAL_DE_VOZ_ID';
-        const guildId = 'TU_GUILD_ID';
+        // Se espera a que el bot esté listo
+        shard.client.on('ready', async () => {
+            logger.start(`[CLIENT] Client ready, processing voice connection.`);
 
-        const channel = shard.client.channels.cache.get(channelId);
+            const channelId = 'TU_CANAL_DE_VOZ_ID';
+            const guildId = 'TU_GUILD_ID';
+            const channel = shard.client.channels.cache.get(channelId);
 
-        if (channel && channel.isVoice()) {
-            const connection = joinVoiceChannel({
-                channelId: channel.id,
-                guildId: guildId,
-                adapterCreator: channel.guild.voiceAdapterCreator,
-            });
-
-            connection.on(VoiceConnectionStatus.Ready, () => {
-                logger.start(`[CLIENT] Conectado al canal de voz ${channel.name}.`);
-
-                // Reproducir el archivo de sonido
-                const player = createAudioPlayer();
-                const resource = createAudioResource('./src/utils/sonics.ogg');
-
-                player.play(resource);
-                connection.subscribe(player);
-
-                player.on(AudioPlayerStatus.Idle, () => {
-                    connection.destroy(); // Desconectar después de que se haya reproducido el sonido
+            if (channel && channel.isVoice()) {
+                const connection = joinVoiceChannel({
+                    channelId: channel.id,
+                    guildId: guildId,
+                    adapterCreator: channel.guild.voiceAdapterCreator,
                 });
-            });
-        } else {
-            logger.error('[CLIENT] No se encontró el canal de voz.');
-        }
+
+                connection.on(VoiceConnectionStatus.Ready, () => {
+                    logger.start(`[CLIENT] Conectado al canal de voz ${channel.name}.`);
+
+                    const player = createAudioPlayer();
+                    const resource = createAudioResource('./src/utils/sonics.ogg');
+
+                    player.play(resource);
+                    connection.subscribe(player);
+
+                    player.on(AudioPlayerStatus.Idle, () => {
+                        connection.destroy();
+                    });
+                });
+            } else {
+                logger.error('[CLIENT] No se encontró el canal de voz.');
+            }
+        });
     });
 });
