@@ -11,7 +11,7 @@ const keepAlive = {
                 res.end(`I'm alive! Currently serving ${client.guilds.cache.size} guilds.`);
             });
             server.listen(3000, () => {
-                client.logger.info('Keep-Alive server is running on port 3000');
+                client.logger.info('Keep-Alive server is running on port 2333');
             });
         }
     },
