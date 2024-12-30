@@ -39,6 +39,7 @@ module.exports = {
             url: process.env.LAVALINK_URL,
             auth: process.env.LAVALINK_AUTH,
             name: process.env.LAVALINK_NAME,
+            port: process.env.LAVALINK_PORT,
             secure: parseBoolean(process.env.LAVALINK_SECURE) || false,
         },
     ],
